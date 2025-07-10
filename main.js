@@ -1,49 +1,27 @@
-const formEl = document.getElementById("ContactsForm");
-const listEl = document.getElementById("ContactsList");
+const formEl = document.getElementById("contactsForm");
+const listEl = document.getElementById("contactsList");
 
-formEl.addEventListener('submit', handleSubmit);
-function handleSubmit(evt){
+formEl.addEventListener("submit", handleSubmit);
+function handleSubmit(evt) {
+  evt.preventDefault();
+  const newClient = {
+    name: evt.currentTarget.elements.name.value,
+    number: evt.currentTarget.elements.telNum.value,
+  };
+  listEl.insertAdjacentHTML("beforeend", createContactMarkup(newClient));
+
+  localStorage.setItem("contact", JSON.stringify(newClient));
+  console.log(evt);
 }
-function createContactMarkup(newContact){
-    return `
+function createContactMarkup(newContact) {
+  return `
 <li>
     <p>${newContact.name}</p>
     <p>${newContact.number}</p>
 </li>
-`
-};
-function renderContacts(contacts){};
-function getContactsFromLocalStorage(key){};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+`;
+}
+function getContactsFromLocalStorage(key) {}
 
 
 
